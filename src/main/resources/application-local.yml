@@ -1,0 +1,29 @@
+server:
+  port: 8082
+
+#spring:
+#  cloud:
+#    discovery:
+#      client:
+#        simple:
+#          instances:
+#            user-service:
+#              - service-id: user-service
+#                uri: http://localhost:8081
+#              - service-id: user-service
+#                uri: http://localhost:8081
+
+eureka:
+  instance:
+    # 유레카에 등록할 때 내 IP 주소를 사용할지 여부
+    prefer-ip-address: true
+#    lease-renewal-interval-in-seconds: 10
+#    lease-expiration-duration-in-seconds: 30
+  client:
+    # 유레카에 자신 등록 (다른 서비스들이 검색할 수 있게) (export)
+    register-with-eureka: true
+    # 유레카에서 다른 서비스 목록 가져올지 여부 (import)
+    fetch-registry: true
+    # 유레카 서버의 위치 주소
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
