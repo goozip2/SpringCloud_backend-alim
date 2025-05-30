@@ -20,7 +20,7 @@ public class BackendAlimController {
 
     @PostMapping(value = "/sms")
     public SendSmsDto.Response sendSms(@RequestBody SendSmsDto.Request request) {
-        log.info("sendSms: userId={}", request.getUserId());
+        log.info("회원가입을 축하드립니다. sendSms: userId={}", request.getUserId());
         SendSmsDto.Response response = new SendSmsDto.Response();
         response.setResult("OK");
         return response;
