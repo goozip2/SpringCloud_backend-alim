@@ -27,3 +27,6 @@ eureka:
     # 유레카 서버의 위치 주소
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
+
+kafka:
+  bootstrap-servers: localhost:9092
