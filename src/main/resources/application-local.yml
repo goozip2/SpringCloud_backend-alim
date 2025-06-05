@@ -1,17 +1,13 @@
 server:
   port: 8082
 
-#spring:
-#  cloud:
-#    discovery:
-#      client:
-#        simple:
-#          instances:
-#            user-service:
-#              - service-id: user-service
-#                uri: http://localhost:8081
-#              - service-id: user-service
-#                uri: http://localhost:8081
+spring:
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411/api/v2/spans
+  cloud:
+    config:
+      enabled: false
 
 eureka:
   instance:
