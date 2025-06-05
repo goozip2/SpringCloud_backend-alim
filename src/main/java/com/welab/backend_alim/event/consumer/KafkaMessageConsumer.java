@@ -1,5 +1,6 @@
 package com.welab.backend_alim.event.consumer;
 
+import com.welab.backend_alim.event.consumer.message.post.PostCommentEvent;
 import com.welab.backend_alim.event.consumer.message.user.SiteUserInfoEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,10 +18,20 @@ public class KafkaMessageConsumer {
                 JsonDeserializer.VALUE_DEFAULT_TYPE
                         // Header에 들어가는 값 (이벤트 메시지 위치)
                         + ":com.welab.backend_alim.event.consumer.message.user.SiteUserInfoEvent"
-            })
-
+    })
     void handleSiteUserInfoEvent(SiteUserInfoEvent event, Acknowledgment ack) {
         log.info("SiteUserInfoEvent 처리. userId={}", event.getUserId());
+        ack.acknowledge();
+    }
+
+    @KafkaListener(
+            topics = PostCommentEvent.Topic, properties = {
+            JsonDeserializer.VALUE_DEFAULT_TYPE
+                    // Header에 들어가는 값 (이벤트 메시지 위치)
+                    + ":com.welab.backend_alim.event.consumer.message.post.PostCommentEvent"
+    })
+    void handlePostCommentEvent(PostCommentEvent event, Acknowledgment ack) {
+        log.info("PostCommentEvent 처리. userId={}", event.getUserId());
         ack.acknowledge();
     }
 }
